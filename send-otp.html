@@ -25,97 +25,6 @@
         }
         h1 {
             color: #333;
-            margin-bottom: 20px;
-        }
-        .input-field {
-            margin: 20px 0;
-            width: 100%;
-        }
-        .input-field input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-        .btn {
-            padding: 12px 20px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 10px;
-        }
-        .btn:hover {
-            background-color: #45a049;
-        }
-        #statusMessage {
-            margin-top: 20px;
-            font-size: 14px;
-        }
-    </style>
-</head>
-<body>
-
-<div class="container">
-    <h1>Enter Your Email</h1>
-    <div class="input-field">
-        <input type="email" id="email" placeholder="Enter Email Address" required>
-    </div>
-    <button class="btn" id="sendOtpButton">Send OTP</button>
-    <p id="statusMessage"></p>
-</div>
-
-<script>
-    document.getElementById('sendOtpButton').addEventListener('click', function() {
-        const email = document.getElementById('email').value.trim();
-        const statusMessage = document.getElementById('statusMessage');
-
-        // Clear previous messages
-        statusMessage.innerText = '';
-        statusMessage.style.color = '';
-
-        // Validate email format
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!email || !emailRegex.test(email)) {
-            statusMessage.innerText = 'Please enter a valid email address.';
-            statusMessage.style.color = 'red';
-            return;
-        }
-
-        // Send OTP request to the backend
-        fetch('https://your-backend-url.com/send-otp', { // Replace with your backend URL
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ email: email }),
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.status === 'success') {
-                statusMessage.innerText = 'OTP sent to your email!';
-                statusMessage.style.color = 'green';
-            } else {
-                statusMessage.innerText = data.message || 'Failed to send OTP. Please try again.';
-                statusMessage.style.color = 'red';
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            statusMessage.innerText = 'An error occurred while sending OTP. Please try again.';
-            statusMessage.style.color = 'red';
-        });
-    });
-</script>
-
-</body>
-</html>
-        h1 {
-            color: #333;
         }
         .input-field {
             margin: 20px 0;
@@ -166,7 +75,7 @@
         }
 
         // Send OTP request to the backend
-        fetch('http://localhost:3000/send-otp', {
+        fetch('https://gmail-otp-sender-with-online-host.onrender.com/send-otp', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

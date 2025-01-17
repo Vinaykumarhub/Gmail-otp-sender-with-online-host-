@@ -67,12 +67,17 @@
     document.getElementById('sendOtpButton').addEventListener('click', function() {
         const email = document.getElementById('email').value;
 
-        // Check if email is not empty
-        if (email.trim() === '') {
-            document.getElementById('statusMessage').innerText = 'Please enter a valid email.';
+        // Validate email format
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            document.getElementById('statusMessage').innerText = 'Please enter a valid email address.';
             document.getElementById('statusMessage').style.color = 'red';
             return;
         }
+
+        // Show loading message
+        document.getElementById('statusMessage').innerText = 'Sending OTP...';
+        document.getElementById('statusMessage').style.color = 'blue';
 
         // Send OTP request to the backend
         fetch('https://gmail-otp-sender-with-online-host.onrender.com/send-otp', {
@@ -93,6 +98,7 @@
             }
         })
         .catch(error => {
+            console.error('Error:', error);
             document.getElementById('statusMessage').innerText = 'Error sending OTP.';
             document.getElementById('statusMessage').style.color = 'red';
         });
